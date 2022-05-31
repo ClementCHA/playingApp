@@ -1,0 +1,9 @@
+@use './styles/vars';
+@import './styles/mixins';
+
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  @include flexCenter;
+
+}

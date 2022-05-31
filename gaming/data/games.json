@@ -1,0 +1,31 @@
+{
+  "gameList": [
+    {
+      "id": 1,
+      "name": "shifumi",
+      "description": "El famoso jeu de Shifumi",
+      "image": "/images/scissors.png",
+      "color": "green"
+    }
+  ],
+  "shifumi": [
+    {
+      "id": 1,
+      "name": "scissors",
+      "image": "/images/scissors_grey.png",
+      "description": " Scissors are sharp, be carefull"
+    },
+    {
+      "id": 2,
+      "name": "paper",
+      "image": "/images/paper_grey.png",
+      "description": "Even paper is lighter when 2 people carry it"
+    },
+    {
+      "id": 3,
+      "name": "stone",
+      "image": "/images/stone_grey.png",
+      "description": "Pierre? Here !"
+    }
+  ]
+}

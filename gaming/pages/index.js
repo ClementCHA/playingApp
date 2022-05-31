@@ -1,25 +1,55 @@
+import Image from "next/image";
+import Link from "next/link";
+
 import styles from '../styles/Home.module.css';
 
-import Head from "next/head"
+export default function Home({gameList}) {
 
-export default function Home() {
   return (
     <>
-      <Head>
-        <meta httpEquiv="x-UA-Compatible" content="IE-edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
-        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png"/>
-        <link rel="manifest" href="favicon/site.webmanifest"/>
-        <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5"/>
+      <h1> Bienvenue sur votre site de jeux favoris ! 🤓</h1>
 
-        <meta name="msapplication-TileColor" content="#da532c"/>
-        <meta name="theme-color" content="#ffffff"/>
-        
-        <title>Gaming</title>
-      </Head>
+      <ul>
+        {gameList.map(game =>
+          <li key={game.id}>
+            <Link href={`/${game.name}`}>
+              <a>
+                <div className={styles.icone}>
+                  <Image
+                    className={styles.image}
+                    layout="responsive"
+                    width="1772"
+                    height="1772"
+                    src={game.image}
+                  />
+                </div>
+
+                <h2>{game.name.charAt(0).toUpperCase() + game.name.slice(1)}</h2>
+              </a>
+            </Link>
+
+          </li>
+          
+        )}
+      </ul>
+    
     </>
   )
+}
+
+export async function getStaticProps(){
+  const data = await import('/data/games.json');
+  const gameList = data.gameList;
+
+ if(!gameList) {
+    return {
+      notFound: true
+    };
+  }; 
+
+  return {
+    props: {
+      gameList
+    }
+  };
 }
