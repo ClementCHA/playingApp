@@ -13,19 +13,22 @@
       "id": 1,
       "name": "scissors",
       "image": "/images/scissors_grey.png",
-      "description": " Scissors are sharp, be carefull"
+      "description": " Scissors are sharp, be carefull !",
+      "color": "#ff0d3d"
     },
     {
       "id": 2,
       "name": "paper",
       "image": "/images/paper_grey.png",
-      "description": "Even paper is lighter when 2 people carry it"
+      "description": "Even paper is lighter when 2 people carry it",
+      "color": "#FFD289"
     },
     {
       "id": 3,
       "name": "stone",
       "image": "/images/stone_grey.png",
-      "description": "Pierre? Here !"
+      "description": "Pierre? Here !",
+      "color": "#b08968"
     }
   ]
 }

@@ -2,8 +2,66 @@
 @import './styles/mixins';
 
 .container {
-  width: 100vw;
-  min-height: 100vh;
   @include flexCenter;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
+.title {
+  font-family: 'Zen dots';
+  letter-spacing: 2px;
+  margin-bottom: 4vh;
+  font-size: 2.5vh;
+}
+
+.options {
+  @include flexCenter;
+  flex-direction: column;
+
+  &_button {
+    position: relative;
+    border-radius: 10px;
+    margin: 4vw;
+  }
+
+  &_icon {
+    max-width: 40vw;
+  }
+}
+
+.tooltip {
+  font-family: 'Zen dots';
+  letter-spacing: 2px;
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%);
+  max-width: 15vw;
+  padding: 15px 20px;
+  border-radius: 5px;
+  font-size: 0.7vw;
+  background: vars.$light-grey;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+@media screen and (min-width: 850px) {
+
+  .options {
+    flex-direction: row;
+
+    &_button:hover .tooltip {
+      transform: translate(-50%, 10px);
+      pointer-events: all;
+      opacity: 1;
+    }
+
+    &_icon {
+      max-width: 20vw;
+    }
+  }
+
+  .title {
+    margin-bottom: 4vw;
+    font-size: 2vw;
+  }
 }
