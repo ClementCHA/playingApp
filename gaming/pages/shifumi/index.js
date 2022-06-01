@@ -1,9 +1,26 @@
 import View from './view';
 
+import { useState } from 'react';
+
 const Shifumi = ({shifumi}) => {
 
+  const [weaponChoosed, setWeaponChoosed] = useState("");
+
+  const handleClick = (o) => {
+    setWeaponChoosed(o.name);
+  };
+
+  const reset = () => {
+    setWeaponChoosed('');
+  };
+
   return (
-    <View shifumi={shifumi} />
+    <View 
+      shifumi={shifumi}
+      handleClick={handleClick}
+      weaponChoosed={weaponChoosed}
+      reset={reset}
+    />
   );
 };
 

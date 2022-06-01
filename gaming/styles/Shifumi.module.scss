@@ -1,6 +1,14 @@
 @use './styles/vars';
 @import './styles/mixins';
 
+.shifumi {
+  font-family: 'Zen dots';
+  font-size: 8vw;
+  transform: scale(20);
+  opacity: 0;
+  animation: apparition 1s ease-out forwards;
+}
+
 .container {
   @include flexCenter;
   flex-direction: column;
@@ -12,6 +20,7 @@
   letter-spacing: 2px;
   margin-bottom: 4vh;
   font-size: 2.5vh;
+  text-shadow: 4px 4px 20px vars.$grey;
 }
 
 .options {
@@ -22,10 +31,17 @@
     position: relative;
     border-radius: 10px;
     margin: 4vw;
+    box-shadow: 4px 4px 10px vars.$black;
+    transition: .3s;
+
+    &:active {
+      transform: scale(0.9);
+    }
   }
 
   &_icon {
     max-width: 40vw;
+    transition: .3s;
   }
 }
 
@@ -44,15 +60,26 @@
   transition: all 0.5s ease;
 }
 
+.fight {
+  display: flex;
+}
+
 @media screen and (min-width: 850px) {
 
   .options {
     flex-direction: row;
 
-    &_button:hover .tooltip {
-      transform: translate(-50%, 10px);
-      pointer-events: all;
-      opacity: 1;
+    &_button {
+
+      &:hover .options_icon {
+        transform: scale(1.8) rotate(-10deg);
+      }
+
+      &:hover .tooltip {
+        transform: translate(-50%, 10px);
+        pointer-events: all;
+        opacity: 1;
+      }
     }
 
     &_icon {
@@ -63,5 +90,13 @@
   .title {
     margin-bottom: 4vw;
     font-size: 2vw;
+  }
+}
+
+@keyframes apparition {
+
+  100% {
+    opacity: 1;
+    transform: none;
   }
 }

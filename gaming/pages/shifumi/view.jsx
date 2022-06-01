@@ -1,40 +1,35 @@
 import styles from '../../styles/Shifumi.module.scss';
 
-import Image from 'next/image'
+import InitialGame from '../../components/Shifumi/initialGame';
 
-const View = ({shifumi}) => {
+import Result from '../../components/Shifumi/result';
+
+const View = ({ shifumi, handleClick, weaponChoosed, setWeaponChoosed, reset }) => {
 
   return (
     <section className={styles.container}>
 
-      <h1 className={styles.title}>
-        Choose your weapon !
-      </h1>
-      
-      <ul className={styles.options}>
-        {shifumi.map(option =>
-          <li key={option.id}>
-            <button
-              className={styles.options_button}
-              style={{background: `${option.color}`}}
-            >
-              <div className={styles.options_icon}>
-                <Image
-                  priority="true"
-                  width="1772"
-                  height="1772"
-                  src={option.image}
-                />
-              </div>
+      { !weaponChoosed && (
+        <InitialGame
+          shifumi={shifumi}
+          handleClick={handleClick}
+        />
+      )}
 
-              <span className={styles.tooltip}>
-                {option.description}
-              </span>
+      {}
 
-            </button>
-          </li>
-        )}
-      </ul>
+     { weaponChoosed && (
+        <Result 
+          weaponChoosed={weaponChoosed}
+          setWeaponChoosed={setWeaponChoosed}
+          reset={reset}
+          shifumi={shifumi}
+        />
+      )}
+
+
+
+
     </section>
   );
 };
