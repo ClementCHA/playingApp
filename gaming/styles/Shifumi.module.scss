@@ -1,22 +1,14 @@
 @use './styles/vars';
 @import './styles/mixins';
 
-.shifumi {
-  font-family: 'Zen dots';
-  font-size: 8vw;
-  transform: scale(20);
-  opacity: 0;
-  animation: apparition 1s ease-out forwards;
-}
-
 .container {
   @include flexCenter;
   flex-direction: column;
   min-height: 100vh;
+  font-family: 'Zen dots';
 }
 
 .title {
-  font-family: 'Zen dots';
   letter-spacing: 2px;
   margin-bottom: 4vh;
   font-size: 2.5vh;
@@ -60,8 +52,41 @@
   transition: all 0.5s ease;
 }
 
+.shifumi {
+  font-size: 8vw;
+  transform: scale(20);
+  opacity: 0;
+  animation: apparition 1s ease-out forwards;
+}
+
 .fight {
   display: flex;
+  align-items: center;
+}
+
+.lets_fight {
+  margin-bottom: 100px;
+  text-align: center;
+  font-size: 2vh;
+  letter-spacing: 0.8vh;
+
+}
+
+.versus {
+  font-size: 1.8vh;
+  letter-spacing: 1vh;
+  margin: 2vh;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.opponent {
+  font-size: 1.8vh;
+  letter-spacing: 1vh;
 }
 
 @media screen and (min-width: 850px) {
@@ -90,6 +115,22 @@
   .title {
     margin-bottom: 4vw;
     font-size: 2vw;
+  }
+
+  .lets_fight {
+    font-size: 2vw;
+    letter-spacing: 0.3vw;
+  }
+
+  .versus {
+    font-size: 2vw;
+    letter-spacing: 0.5vw;
+    margin: 2vw;
+  }
+
+  .opponent {
+    font-size: 2vw;
+    letter-spacing: 0.5vw;
   }
 }
 

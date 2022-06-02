@@ -2,9 +2,9 @@ import styles from '../../styles/Shifumi.module.scss';
 
 import InitialGame from '../../components/Shifumi/initialGame';
 
-import Result from '../../components/Shifumi/result';
+import ResultContainer from '../../components/Shifumi/resultContainer';
 
-const View = ({ shifumi, handleClick, weaponChoosed, setWeaponChoosed, reset }) => {
+const View = ({ shifumi, handleClick, weaponChoosed, reset }) => {
 
   return (
     <section className={styles.container}>
@@ -16,19 +16,13 @@ const View = ({ shifumi, handleClick, weaponChoosed, setWeaponChoosed, reset }) 
         />
       )}
 
-      {}
-
-     { weaponChoosed && (
-        <Result 
+      { weaponChoosed && (
+        <ResultContainer
           weaponChoosed={weaponChoosed}
-          setWeaponChoosed={setWeaponChoosed}
           reset={reset}
           shifumi={shifumi}
         />
       )}
-
-
-
 
     </section>
   );

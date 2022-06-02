@@ -1,49 +1,50 @@
-import { useState, useEffect } from 'react'
-
 import Image from 'next/image';
 
 import styles from '../../styles/Shifumi.module.scss';
 
-const Result = ({ weaponChoosed, reset, shifumi }) => {
+const Result = ({ step, weaponRetrieve, weaponChoosedFromIA, reset}) => {
+
+
+  const userWeapon = weaponRetrieve?.name;
+  const IAWeapon = weaponChoosedFromIA?.name;
   
-  const [step, setStep] = useState(0);
-  const [weaponRetrieve, setWeaponRetrieve] = useState(null)
-  const [weaponChoosedFromIA, setWeaponChoosedFromIA] = useState(null)
-
-  useEffect(()=>{
-    retrieveMyWeapon();
-    chooseWeaponForIA();
-
-    const intervalID = setInterval(() => {
-      setStep(step => step + 1 );
-    }, 1500);
-
-    setTimeout(() => {
-      clearInterval(intervalID);
-    }, 5000);
-
-    return () => {
-      clearInterval(intervalID);
+  const possibleResult = () => {
+    switch(true){
+      case IAWeapon === "paper" && userWeapon === "paper":
+      case IAWeapon === "scissors" && userWeapon === "scissors":
+      case IAWeapon=== "stone" && userWeapon === "stone" :
+        return <p className={styles.result}> It's a tie ! </p>; 
+      case IAWeapon === "scissors" && userWeapon === "paper": 
+      case IAWeapon === "paper" && userWeapon === "stone":
+      case IAWeapon === "stone" && userWeapon === "scissors": 
+        return <p className={styles.result}> You loose ! </p>;
+      case userWeapon === "scissors" && IAWeapon === "paper": 
+      case userWeapon === "paper" && IAWeapon === "stone":
+      case userWeapon === "stone" && IAWeapon === "scissors" :
+        return <p className={styles.result}> You win ! </p>;
+  
     };
-  }, []);
-
-  const randomIntFromInterval = (min, max) => { 
-    return Math.floor(Math.random() * (max - min + 1) + min)
   };
+  
+  const getQuote = () => {
+    switch (true) {
+      case userWeapon === "scissors" && IAWeapon === "paper" :
+      case userWeapon === "paper" && IAWeapon === "scissors" :
+        return <p className={styles.quote}>Scissors cut paper</p>
 
-  const retrieveMyWeapon = () => {
-    const weapon = shifumi.find(weapon => weapon.name === weaponChoosed);
-    setWeaponRetrieve(weapon);
-  };
+      case userWeapon === "stone" && IAWeapon === "paper" :
+      case userWeapon === "paper" && IAWeapon === "stone" :
+        return <p className={styles.quote}>Paper wrap stone</p>
 
-  const chooseWeaponForIA = () => {
-    const choosedWeapon = randomIntFromInterval(1, 3);
-    const weapon = shifumi.find(weapon => weapon.id === choosedWeapon);
-    setWeaponChoosedFromIA(weapon)
+      case userWeapon === "stone" && IAWeapon === "scissors" :
+      case userWeapon === "scissors" && IAWeapon === "stone" :
+        return <p className={styles.quote}>Stone break scissors</p>
+    };
   };
+  
 
   return (
-    <div> 
+    <> 
       {step === 0 && (
         <p className={styles.shifumi}>
           SHI...
@@ -58,16 +59,18 @@ const Result = ({ weaponChoosed, reset, shifumi }) => {
 
       {step === 2 && (
         <p className={styles.shifumi}>
-          MI !
+          MI !  
         </p>
       )}
 
       {step > 2 && (
-        <> 
-          <h1> LET'S FIGHT !</h1>
+        <section className={styles.section}>
+          <h1 className={styles.lets_fight}>
+            LET'S FIGHT !
+          </h1>
 
           <section className={styles.fight}>
-            <div className={styles.boxIcon}>
+            <div className={styles.box}>
               <div className={styles.options_icon}>
                 <Image
                   priority="true"
@@ -76,13 +79,16 @@ const Result = ({ weaponChoosed, reset, shifumi }) => {
                   src={weaponRetrieve?.coloredImage}
                 />
               </div>
+              <span className={styles.opponent}>
+                YOU
+              </span>
             </div>
             
-            <p>
-              VS
+            <p className={styles.versus}>
+              V.S
             </p>
             
-            <div className={styles.boxIcon}>
+            <div className={styles.box}>
               <div className={styles.options_icon}>
                 <Image
                   priority="true"
@@ -91,15 +97,21 @@ const Result = ({ weaponChoosed, reset, shifumi }) => {
                   src={weaponChoosedFromIA.coloredImage}
                 />
               </div>
+              <span className={styles.opponent}>
+                IA
+              </span>
             </div>
           </section>
-
+          {possibleResult()}
+          {getQuote()}
           <button onClick={reset}>
             Rejouer 
           </button>
-        </>
+        </section>
+
+       
       )}
-    </div>
+    </>
   );
 };
 
