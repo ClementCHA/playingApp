@@ -11,7 +11,10 @@ const InitialGame = ({shifumi, handleClick}) => {
 
       <ul className={styles.options}>
         {shifumi.map(option =>
-          <li key={option.id}>
+          <li
+            key={option.id}
+            className={styles.options_card}
+          >
             <button
               className={styles.options_button}
               style={{background: `${option.color}`}}

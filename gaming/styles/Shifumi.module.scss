@@ -6,6 +6,7 @@
   flex-direction: column;
   min-height: 100vh;
   font-family: 'Zen dots';
+  overflow: hidden;
 }
 
 .title {
@@ -13,11 +14,24 @@
   margin-bottom: 4vh;
   font-size: 2.5vh;
   text-shadow: 4px 4px 20px vars.$grey;
+  opacity: 0;
+  @include animApparition(1s, 1s);
 }
 
 .options {
   @include flexCenter;
   flex-direction: column;
+  
+  &_card {
+    opacity: 0;
+    transform: translateY(50px);
+    @include animApparition;
+
+    &:nth-child(even) {
+      transform: translateY(-50px);
+      @include animApparition;
+    }
+  }
 
   &_button {
     position: relative;
@@ -27,7 +41,7 @@
     transition: .3s;
 
     &:active {
-      transform: scale(0.9);
+      transform: scale(0.95);
     }
   }
 
@@ -52,11 +66,16 @@
   transition: all 0.5s ease;
 }
 
+.section {
+  @include flexCenter;
+  flex-direction: column;
+}
+
 .shifumi {
   font-size: 8vw;
   transform: scale(20);
   opacity: 0;
-  animation: apparition 1s ease-out forwards;
+  @include animApparition;
 }
 
 .fight {
@@ -66,10 +85,8 @@
 
 .lets_fight {
   margin-bottom: 100px;
-  text-align: center;
   font-size: 2vh;
   letter-spacing: 0.8vh;
-
 }
 
 .versus {
@@ -88,6 +105,44 @@
   font-size: 1.8vh;
   letter-spacing: 1vh;
 }
+
+.result {
+  text-align: center;
+  font-size: 3vh;
+  margin: 20px 0;
+  opacity: 0;
+  transform: scale(0.5);
+  @include animApparition;
+}
+
+.quote {
+  text-align: center;
+  font-size: 2vh;
+  letter-spacing: 0.5vh;
+  opacity: 0;
+  @include animApparition(1s, 1s);
+}
+
+.button {
+  margin: 50px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5vh;
+  font-size: 20px;
+  padding: 15px 30px;
+  background: vars.$main-color;
+  color: vars.$white;
+  border-radius: 5px;
+  transition: transform .2s;
+
+  &:hover {
+    background: vars.$main-hover;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
 
 @media screen and (min-width: 850px) {
 
@@ -131,6 +186,14 @@
   .opponent {
     font-size: 2vw;
     letter-spacing: 0.5vw;
+  }
+
+  .result {
+    font-size: 2vw;
+  }
+
+  .quote {
+    font-size: 1vw;
   }
 }
 

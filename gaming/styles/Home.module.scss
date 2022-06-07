@@ -27,7 +27,7 @@
   border: 2px solid transparent;
   border-radius: 5px;
   padding: 15px;
-  background: vars.$green;
+  background: vars.$yellow;
   width: 200px;
   height: 300px;
   box-shadow: 4px 4px 20px vars.$black;
@@ -41,6 +41,7 @@
 
   &_title {
     @include flexCenter;
+    letter-spacing: 0.3vh;
     color: vars.$white;
     font-weight: bold;
     font-size: 20px;
@@ -51,22 +52,18 @@
 
   &:hover {
     box-shadow: 4px 4px 30px vars.$black;
-    border-color: vars.$black;
+    border-color: rgba(vars.$white, 0.2);
   }
 
   &:hover .card_title {
-    transform: scale(1.2);
+    letter-spacing: 0.5vh;
   }
 
   &:hover .card_icon {
-    transform: scale(1.25) rotate(15deg);
+    transform: scale(1.5) rotate(15deg);
   }
 
   &:nth-child(even) {
-    background: vars.$yellow;
-
-    &:hover {
-      background: vars.$yellow-hover;
-    }
+    background: vars.$green;
   }
 }

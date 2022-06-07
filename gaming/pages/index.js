@@ -13,6 +13,7 @@ export default function Home({gameList}) {
       </h1>
 
       <ul className={styles.list}>
+
         {gameList.map(game =>
 
           <li key={game.id}>
@@ -28,17 +29,17 @@ export default function Home({gameList}) {
                   />
                 </div>
 
-                <h2 className={styles.card_title}>
+                <h2
+                  className={styles.card_title}
+                  style={{fontFamily: `${game.font}`}}
+                >
                   {game.name.charAt(0).toUpperCase() + game.name.slice(1)}
                 </h2>
               </a>
             </Link>
-
           </li>
-          
         )}
       </ul>
-    
     </div>
   );
 };
@@ -51,11 +52,11 @@ export async function getStaticProps(){
     return {
       notFound: true
     };
-  }; 
+  };
 
   return {
     props: {
       gameList
     }
   };
-}
+};

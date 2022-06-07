@@ -102,14 +102,18 @@ const Result = ({ step, weaponRetrieve, weaponChoosedFromIA, reset}) => {
               </span>
             </div>
           </section>
+
           {possibleResult()}
+
           {getQuote()}
-          <button onClick={reset}>
-            Rejouer 
+
+          <button
+            className={styles.button}
+            onClick={reset}
+          >
+            Rejouer
           </button>
         </section>
-
-       
       )}
     </>
   );

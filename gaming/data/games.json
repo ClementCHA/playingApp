@@ -5,7 +5,7 @@
       "name": "shifumi",
       "description": "El famoso jeu de Shifumi",
       "image": "/images/scissors.png",
-      "color": "green"
+      "font": "Zen dots"
     }
   ],
   "shifumi": [
