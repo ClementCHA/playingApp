@@ -1,22 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
 
 export default function Home({gameList}) {
 
   return (
-    <>
-      <h1> Bienvenue sur votre site de jeux favoris ! 🤓</h1>
+    <div className={styles.container}>
 
-      <ul>
+      <h1 className={styles.title}>
+        Bienvenue sur votre site de jeux favoris ! 🤓
+      </h1>
+
+      <ul className={styles.list}>
         {gameList.map(game =>
+
           <li key={game.id}>
+
             <Link href={`/${game.name}`}>
-              <a>
-                <div className={styles.icone}>
+              <a className={styles.card}>
+                <div className={styles.card_icon}>
                   <Image
-                    className={styles.image}
                     layout="responsive"
                     width="1772"
                     height="1772"
@@ -24,7 +28,9 @@ export default function Home({gameList}) {
                   />
                 </div>
 
-                <h2>{game.name.charAt(0).toUpperCase() + game.name.slice(1)}</h2>
+                <h2 className={styles.card_title}>
+                  {game.name.charAt(0).toUpperCase() + game.name.slice(1)}
+                </h2>
               </a>
             </Link>
 
@@ -33,9 +39,9 @@ export default function Home({gameList}) {
         )}
       </ul>
     
-    </>
-  )
-}
+    </div>
+  );
+};
 
 export async function getStaticProps(){
   const data = await import('/data/games.json');

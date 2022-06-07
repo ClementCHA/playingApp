@@ -1,12 +1,12 @@
 import Navbar from '../Navbar';
-import Header from "../Header";
+import Head from "../Head";
 
 const Container = (props) => {
 
   return (
     <>
+      <Head />
       <Navbar />
-      <Header />
       {props.children}
     </>
   );

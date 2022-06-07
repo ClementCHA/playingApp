@@ -1,0 +1,72 @@
+@use './styles/vars';
+@import './styles/mixins';
+
+.container {
+  @include flexCenter;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.title {
+  @include posAbsolute(100px, auto, auto, 50px);
+  font-weight: bold;
+  font-size: 35px;
+  letter-spacing: 0.15vw;
+}
+
+.list {
+  @include flexCenter;
+  flex-wrap: wrap;
+}
+
+.card {
+  @include flexCenter;
+  flex-direction: column;
+  margin: 50px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 15px;
+  background: vars.$green;
+  width: 200px;
+  height: 300px;
+  box-shadow: 4px 4px 20px vars.$black;
+  transition: box-shadow .3s;
+
+  &_icon {
+    width: 150px;
+    height: 150px;
+    transition: .3s;
+  }
+
+  &_title {
+    @include flexCenter;
+    color: vars.$white;
+    font-weight: bold;
+    font-size: 20px;
+    height: 100px;
+    text-shadow: 0 0 20px vars.$black;
+    transition: .3s;
+  }
+
+  &:hover {
+    box-shadow: 4px 4px 30px vars.$black;
+    border-color: vars.$black;
+  }
+
+  &:hover .card_title {
+    transform: scale(1.2);
+  }
+
+  &:hover .card_icon {
+    transform: scale(1.25) rotate(15deg);
+  }
+
+  &:nth-child(even) {
+    background: vars.$yellow;
+
+    &:hover {
+      background: vars.$yellow-hover;
+    }
+  }
+}
